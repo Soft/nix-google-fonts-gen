@@ -1,7 +1,7 @@
 dataclasses==0.6
 google-apputils==0.4.1
 mox==0.5.3
-protobuf==3.5.1
+protobuf==3.20.1
 python-dateutil==2.7.3
 python-gflags==3.1.2
 pytz==2018.5

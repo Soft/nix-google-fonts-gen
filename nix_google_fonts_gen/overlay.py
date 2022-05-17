@@ -145,15 +145,15 @@ def sanitize_string(string: str) -> str:
 
 def font_fetcher(repository: Path, font: Font) -> str:
     """Return fetcher expression for a font file"""
-    url = font_url(repository, font)
-    filename = font.path.name
+    url = font_url(repository, font).replace("[", "%5B").replace("]", "%5D")
+    filename = font.path.name.replace("[", "_").replace("]", "_")
     hash = sha256_hex(font.path)
     return FETCHER_TEMPLATE.format(url=url, name=filename, hash=hash)
 
 
 def font_installer(font: Font) -> str:
     """Return command for installing font file"""
-    filename = font.path.name
+    filename = font.path.name.replace("[", "_").replace("]", "_")
     ext = font.path.suffix.lower()
     if ext == ".ttf":
         type = "/truetype"
